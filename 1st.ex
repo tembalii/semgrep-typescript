@@ -1,6 +1,17 @@
-defmodule MyApp.Parser do
-  def parse_param(param) do
-    key = String.to_atom(param)  # ⚠️ Unsafe: converts arbitrary input to atom
-    Map.get(%{foo: "bar"}, key)
-  end
-end
+# ruleid: sql-injection
+Ecto.Adapters.SQL.query(Repo, user_input)
+
+# ruleid: sql-injection
+Repo.query(user_input)
+
+# ruleid: sql-injection
+SQL.query!(Repo, user_input)
+
+# ruleid: sql-injection
+Repo.query!(user_input)
+
+# ruleid: sql-injection
+Ecto.Adapters.SQL.stream(Repo, user_input)
+
+# ok: sql-injection
+Path.expand("../deps", __DIR__)
