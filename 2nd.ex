@@ -1,5 +1,20 @@
-defmodule UnsafeExample do
-  def convert_user_input_to_atom(user_input) do
-    String.to_atom(user_input)
-  end
-end
+# ruleid: sql-injection
+Ecto.Adapters.SQL.query(Repo, user_input)
+
+# ruleid: sql-injection
+Repo.query(user_input)
+
+# ruleid: sql-injection
+SQL.query!(Repo, user_input)
+
+# ruleid: sql-injection
+Repo.query!(user_input)
+
+# ruleid: sql-injection
+Ecto.Adapters.SQL.stream(Repo, user_input)
+
+# ok: sql-injection
+Path.expand("../deps", __DIR__)
+
+# ok: sql-injection
+djbjnjgongokgm
